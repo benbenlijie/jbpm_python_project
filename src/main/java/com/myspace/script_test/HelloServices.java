@@ -6,11 +6,22 @@ package com.myspace.script_test;
 
 public class HelloServices implements java.io.Serializable {
 
+    private static final HelloServices INSTANCE = new HelloServices();
+    
+    public static HelloServices getInstance()
+    {
+        return INSTANCE;
+    }
+    
     static final long serialVersionUID = 1L;
 
     public HelloServices() {
     }
 
+    public void sayHello(String name)
+    {
+        System.out.println("Hello "+name);
+    }
 
 
 
