@@ -28,7 +28,7 @@ public class HelloServices implements java.io.Serializable {
 
         Process proc;
         try {
-            proc = Runtime.getRuntime().exec("python src/main/resources/python/test.py");
+            proc = Runtime.getRuntime().exec("python -c 'print(112233)'");
             BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
             String line;
             while ((line = reader.readLine()) != null) {
