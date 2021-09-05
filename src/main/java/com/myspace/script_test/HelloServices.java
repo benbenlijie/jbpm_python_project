@@ -28,12 +28,14 @@ public class HelloServices implements java.io.Serializable {
 
         Process proc;
         try {
-            proc = Runtime.getRuntime().exec("python -c 'print(112233)'");
+            proc = Runtime.getRuntime().exec("python --version");
+            System.out.println("python output begins.")
             BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
             String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
             }
+            System.out.println("python output finished.")
             reader.close();
             proc.waitFor();
         } catch (IOException e) {
