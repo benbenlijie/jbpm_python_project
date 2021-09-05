@@ -20,7 +20,9 @@ public class HelloServices implements java.io.Serializable {
 
     public void sayHello(String name)
     {
-        System.out.println("Hello "+name);
+        System.out.println("Hello "+name + " Working Directory: " + System.getProperty("user.dir"));
+        
+        
     }
 
 
