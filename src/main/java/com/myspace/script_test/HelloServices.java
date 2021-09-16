@@ -1,5 +1,7 @@
 package com.myspace.script_test;
 
+import org.kie.api.runtime.process.ProcessContext;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,10 +24,10 @@ public class HelloServices implements java.io.Serializable {
     public HelloServices() {
     }
 
-    public void sayHello(String name)
+    public void sayHello(String name, ProcessContext kcontext)
     {
-        System.out.println("Hello "+name + " Working Directory: " + System.getProperty("user.dir"));
-
+        // System.out.println("Hello "+name + " Working Directory: " + System.getProperty("user.dir"));
+        StringBuilder sb = new StringBuilder();
         Process proc;
         try {
             proc = Runtime.getRuntime().exec("python /Users/benwu/IdeaProjects/script_test/src/main/resources/python/test.py");
@@ -34,6 +36,7 @@ public class HelloServices implements java.io.Serializable {
             String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
+                sb.append(line);
             }
             System.out.println("python output finished.");
             reader.close();
@@ -43,7 +46,7 @@ public class HelloServices implements java.io.Serializable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        kcontext.setVariable(name, sb.toString());
     }
 
 
